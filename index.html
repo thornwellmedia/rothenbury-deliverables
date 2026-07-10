@@ -150,6 +150,11 @@
   </section>
 
   <section>
+    <div class="sec-head"><h2>Operating Infrastructure</h2><span class="k">the systems built behind the brands</span></div>
+    <div class="brands" id="infra"></div>
+  </section>
+
+  <section>
     <div class="notes">
       <h2>Notes on the Record</h2>
       <ul>
@@ -339,6 +344,18 @@ function socBar(b){
   if(b.socNote) return `<div class="soc"><span class="none">${b.socNote}</span></div>`;
   return '';
 }
+
+const infra=[
+ {name:'Rothenbury Brand Hub',tag:'Central brand-asset hub for the whole portfolio',url:'https://rothenbury-brand-hub.vercel.app/',s:S.LIVE},
+ {name:'Rothenbury Newsroom',tag:'Portfolio press &amp; announcements hub',url:'https://rothenbury-newsroom.vercel.app/',s:S.LIVE},
+ {name:'Team Portal / CMS',tag:'Internal team site &amp; content management',url:'https://team.rothenbury.com/',s:S.LIVE,note:'secure login'},
+ {name:'e-Signature Portal',tag:'Document signing for agreements',url:'https://rothenbury-signatures.vercel.app/',s:S.LIVE},
+ {name:'Lead-Capture / Contact API',tag:'Backend service powering site contact forms',url:null,s:S.LIVE,note:'backend service'},
+];
+document.getElementById('infra').innerHTML=infra.map(i=>`<div class="bcard">
+  <div class="bh"><div><h3>${i.name}</h3><div class="btag">${i.tag}</div></div>${statChip(i.s)}</div>
+  <div class="rows"><div class="r"><div class="rk">Access</div><div class="rv">${i.url?`<a href="${i.url}" target="_blank" rel="noopener">${i.url.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'')}</a>`:'<span class="muted">internal backend service</span>'}${i.note?` <span class="muted">· ${i.note}</span>`:''}</div></div></div>
+</div>`).join('');
 
 document.getElementById('brands').innerHTML=brands.map(b=>{
   const A=b.articles,PC=b.podcast,SO=b.social,V=b.video,PR=b.press,G=b.gmb;
